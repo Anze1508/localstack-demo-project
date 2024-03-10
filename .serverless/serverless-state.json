@@ -184,7 +184,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/localstack-demo/dev/1710088831092-2024-03-10T16:40:31.092Z/localstack-demo.zip"
+                "S3Key": "serverless/localstack-demo/dev/1710089088686-2024-03-10T16:44:48.686Z/localstack-demo.zip"
               },
               "Handler": "handler.handler",
               "Runtime": "nodejs14.x",
@@ -214,7 +214,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/localstack-demo/dev/1710088831092-2024-03-10T16:40:31.092Z/localstack-demo.zip"
+                "S3Key": "serverless/localstack-demo/dev/1710089088686-2024-03-10T16:44:48.686Z/localstack-demo.zip"
               },
               "Handler": "handler.handler",
               "Runtime": "nodejs14.x",
@@ -478,7 +478,7 @@
               "CreateUserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1710088822003": {
+          "ApiGatewayDeployment1710089077556": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -818,7 +818,7 @@
     "artifact": "/home/anze/localstack-demo-project/.serverless/localstack-demo.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/localstack-demo/dev/1710088831092-2024-03-10T16:40:31.092Z",
+    "artifactDirectoryName": "serverless/localstack-demo/dev/1710089088686-2024-03-10T16:44:48.686Z",
     "artifact": "localstack-demo.zip"
   }
 }
