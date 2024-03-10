@@ -1,4 +1,4 @@
-# I will create a simple application that stores user data (e.g., name and email) in DynamoDB and retrieves it using a Lambda function exposed through an API Gateway endpoint.
+# Creating a simple application that stores user data (e.g., name and email) in DynamoDB and retrieves it using a Lambda function exposed through an API Gateway endpoint.
 
 ## Prerequisites
 
@@ -8,8 +8,6 @@ Before proceeding, please ensure you have the following installed and configured
 - **AWS CLI**: Ensure the AWS CLI is installed and configured on your machine. It is crucial for interacting with the LocalStack AWS services.
 - **Node.js**: Required for writing the AWS Lambda function.
 - **Serverless Framework**: Simplifies the process of deploying your Lambda function and setting up the API Gateway.
-- **Basic knowledge of using the terminal/command line** is assumed.
-- **A GitHub account** is necessary for version control and documentation purposes.
 
 ## Step 1: Setting up the project
 
