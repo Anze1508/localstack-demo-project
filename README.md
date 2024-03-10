@@ -12,17 +12,20 @@ Before proceeding, please ensure you have the following installed and configured
 ## Step 1: Setting up the project
 
 ### Initialize a new Node.js project:
-´´´
+```
 npm init -y
-´´´
+```
+
 ### Install AWS SDK for Node.js:
-´´´
+```
 npm install aws-sdk
-´´´
+```
+
 ## Writing the Lambda function
 
 ### Create a file named handler.js and write a Lambda function to insert and retrieve user data from DynamoDB:
-´´´
+
+```
 const AWS = require('aws-sdk');
 
 // Configure AWS SDK to use LocalStack
@@ -64,32 +67,33 @@ exports.handler = async (event) => {
         }
     }
 };
-´´´
+```
+
 _This code snippet provides basic functionality for a GET and POST request to interact with DynamoDB._
 
 ## Step 3: Setting up DynamoDB with LocalStack
 
 1. Create a DynamoDB table using the AWS CLI, targeting LocalStack:
-´´´
+```
 aws --endpoint-url=http://localhost:4566 --region us-east-1 dynamodb create-table --table-name Users --attribute-definitions AttributeName=userId,AttributeType=S --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
-´´´
+```
 
 _Set up AWS credentials with: ´aws configure´ if needed._
 
 2. Verify the table creation:
-´´´
+```
 aws --endpoint-url=http://localhost:4566 dynamodb list-tables
-´´´
+```
 
 ## Step 4: Deploying Lambda function and setting up API Gateway
 
 1. Install the Serverless Framework
-´´´
+```
 npm install -g serverless
-´´´
+```
 
 2. Create a serverless.yml file in your project directory with the following content to define your service, function, and the API Gateway endpoint:
-´´´
+```
 service: localstack-demo
 
 provider:
@@ -108,6 +112,6 @@ functions:
       - http:
           path: users/{userId}
           method: get
-´´´
+```
 
 
