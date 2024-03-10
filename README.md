@@ -185,8 +185,6 @@ curl http://localhost:4566/restapis/<api-id>/dev/_user_request_/user/1
 
 # Concluding thoughts
 
-***Didn't finish the project due to problems with my Lambda function timeout error. I wasn't able to efficiently troubleshoot the error but i don't see this experience as failure. I think all these challenges are part of the learning process for me. I have taken significant steps into new tools and concepts and that effort alone has value. 
+**_Didn't finish the project due to problems with my Lambda function timeout error. I wasn't able to efficiently troubleshoot the error but i don't see this experience as failure. I think all these challenges are part of the learning process for me. I have taken significant steps into new tools and concepts and that effort alone has value._**
 
-My experience has not only enhanced my technical skills but also reinforced my problem-solving capabilities. I learned a lot of new things and I look forward to applying these learnings to future projects.***
-
-
+**_My experience has not only enhanced my technical skills but also reinforced my problem-solving capabilities. I learned a lot of new things and I look forward to applying these learnings to future projects._**
