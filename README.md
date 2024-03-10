@@ -73,16 +73,16 @@ _This code snippet provides basic functionality for a GET and POST request to in
 
 ## Step 3: Setting up DynamoDB with LocalStack
 
-1. Create a DynamoDB table using the AWS CLI, targeting LocalStack:
+1. Create a DynamoDB table:
 ```
-aws --endpoint-url=http://localhost:4566 --region us-east-1 dynamodb create-table --table-name Users --attribute-definitions AttributeName=userId,AttributeType=S --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
+awslocal dynamodb create-table --table-name Users --attribute-definitions AttributeName=userId,AttributeType=S --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 ```
 
 _Set up AWS credentials with: ´aws configure´ if needed._
 
 2. Verify the table creation:
 ```
-aws --endpoint-url=http://localhost:4566 dynamodb list-tables
+awslocal dynamodb list-tables
 ```
 
 ## Step 4: Deploying Lambda function and setting up API Gateway
@@ -113,5 +113,76 @@ functions:
           path: users/{userId}
           method: get
 ```
+## Step 5: Deploying with Serverless Framework
+
+1. Complete your serverless.yml file with the setup for deploying your Lambda function and API Gateway. Below is an extended version of what we started, including configurations for both HTTP GET (retrieve user data) and POST (create user data):
+```
+service: localstack-demo
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+  endpointType: regional
+  environment:
+    DYNAMODB_ENDPOINT: http://localhost:4566
+
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    stages:
+      - dev
+    host: http://localhost
+    edgePort: 4566
+    autostart: true
+
+functions:
+  getUser:
+    handler: handler.handler
+    events:
+      - http:
+          path: user/{userId}
+          method: get
+          cors: true
+  createUser:
+    handler: handler.handler
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+```
+
+2. Ensure LocalStack is configured for Serverless. The serverless-localstack plugin allows the Serverless Framework to deploy resources directly to LocalStack. Install the plugin by running:
+```
+npm install --save-dev serverless-localstack
+```
+
+3. Deploy your service to LocalStack. With LocalStack running, deploy your Serverless application:
+```
+serverless deploy --stage dev
+```
+
+This command deploys your Lambda functions and sets up the API Gateway endpoints in your LocalStack environment.
+
+## Step 6: Testing the application
+
+1. Test the GET and POST requests. Use a tool like curl or Postman to make requests to your API Gateway endpoints. The URLs will be displayed in the output of the serverless deploy command. Replace <api-id> with your actual API ID in the URLs below:
+- POST to create a user:
+
+```
+curl -X POST http://localhost:4566/restapis/<api-id>/dev/_user_request_/user -d '{"userId":"1", "name":"John Doe", "email":"john@example.com"}'
+```
+- GET to retrieve a user:
+```
+curl http://localhost:4566/restapis/<api-id>/dev/_user_request_/user/1
+```
+
+
 
 

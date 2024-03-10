@@ -1,5 +1,7 @@
 service: localstack-demo
 
+frameworkVersion: '3'
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -9,10 +11,30 @@ provider:
   environment:
     DYNAMODB_ENDPOINT: http://localhost:4566
 
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    stages:
+      - dev
+    host: http://localhost
+    edgePort: 4566
+    autostart: true
+
 functions:
-  hello:
+  getUser:
+    handler: handler.handler
+    timeout: 15
+    events:
+      - http:
+          path: user/{userId}
+          method: get
+          cors: true
+  createUser:
     handler: handler.handler
     events:
       - http:
-          path: users/{userId}
-          method: get
+          path: user
+          method: post
+          cors: true
